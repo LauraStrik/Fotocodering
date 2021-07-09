@@ -7,3 +7,11 @@ De EAN code (barcode) wordt gematcht met een bestaande foto naam bv: 12345678912
 Vervolgens wordt de naam van de afbeelding veranderd in de gematchte barcode naar de andere kolommen uit excel.
 kolommen zijn: ProductID, Product, Color, soort
 
+
+Eindproduct app:
+
+python3.6
+pip3 install py2app
+python3 setup.py py2app (-A voor alias mode)
+
+
