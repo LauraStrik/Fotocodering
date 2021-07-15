@@ -23,7 +23,7 @@ screenwidth = root.winfo_screenwidth()
 screenheight = root.winfo_screenheight()
 
 root.geometry('700x200')
-
+root.iconbitmap('ico LS.ico')
 
 
 global locatie
@@ -58,12 +58,14 @@ def on_closing():
     if messagebox.askokcancel("Quit", "Do you want to quit?"):
         root.destroy()
 
-def clear():
+def done():
+    if messagebox.askokcancel("Done", "Klaar is kees!"):
+        root.destroy()
+
+#def clear():
     locatie.clear()
-    #LFrame.destroy()
-    #RFrame.destroy()
-    LFrame.pack_forget()
-    RFrame.pack_forget()
+    LFrame.destroy()
+    RFrame.destroy()
 
 def codeer():
     # Formule maken om de afbeeldingen uit te pakken
@@ -106,8 +108,8 @@ def codeer():
             for file in files:
                 newfilename = newname[files.index(file)]
 
-                shutil.copy(os.path.join(subdir, file),os.path.join(subdir, newfilename)) #kopier
-                #os.rename(os.path.join(subdir, file),os.path.join(subdir, newfilename) ) #hernoemen
+                #shutil.copy(os.path.join(subdir, file),os.path.join(subdir, newfilename)) #kopier
+                os.rename(os.path.join(subdir, file),os.path.join(subdir, newfilename) ) #hernoemen
     else:
         messagebox.showerror(title= 'Error',message='Let op! De Excel file klopt niet. Kan geen Barcode kolom vinden in SMS lijst'
                                                     ' of je hebt een verkeerd bestand geopend. Probeer opnieuw.')
@@ -134,11 +136,11 @@ b1.grid(row = 0, column = 0, sticky = E, pady = 2)
 b2 = tk.Button(root, text='Locatiemap Fotos',command= directory, padx=10, pady=5, bg= 'grey')
 b2.grid(row = 1, column = 0, sticky = E, pady = 2)
 #but codeer
-b3 = tk.Button(root, text='Codeer' , command= codeer,padx=10, pady=5, bg= 'green')
+b3 = tk.Button(root, text='Codeer' , command=lambda:[codeer(),done()],padx=10, pady=5, bg= 'green')
 b3.grid(row = 3, column = 0, sticky = E, pady = 2)
 #but opnieuw
-b4 = tk.Button(root, text='refresh' ,command= clear, padx=10, pady=5,bg= 'yellow')
-b4.grid(row = 4, column = 0, sticky = E, pady = 2)
+#b4 = tk.Button(root, text='refresh' ,command= clear, padx=10, pady=5,bg= 'yellow')
+#b4.grid(row = 4, column = 0, sticky = E, pady = 2)
 
 
 
